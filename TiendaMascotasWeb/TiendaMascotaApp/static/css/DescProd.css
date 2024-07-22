@@ -1,0 +1,101 @@
+/* styles.css */
+/* .thumbnail {
+    background:grey;
+    padding: 15px;
+    border-radius: 5px;
+    transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+} */
+
+/* .thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+} */
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.marca{
+    font-size: 18;
+    font-weight: bold;
+    text-justify: distribute;
+}
+
+.contDesc{
+    display: flex;
+    /* align-items: center; */
+    border: 2px solid black;
+    margin: 30px 0px 30px;
+    /* flex-wrap: nowrap;
+    flex-direction: row; */
+}
+
+.imgProd{
+    padding: 30px 45px 30px 45px;
+    flex: 1; /* Ocupa todo el espacio disponible */
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
+}
+
+.imgProd img{
+    width: 500px;
+    height: 500px; 
+}
+
+.contProd{
+    flex: 2;
+    padding: 35px 25px 25px 25px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.titProd{
+    padding: 5px 0px 10px 0px;
+    text-align: justify;
+    font-weight: bold;
+}
+
+.marcapr{
+    padding: 0px 0px 15px 0px;
+    text-align: left;
+}
+
+.cantProd{
+    padding: 5px 0px 10px 0px;
+    text-align: right;
+}
+
+.Descrip{
+    padding: 5px 0px 10px 0px;
+    text-align: justify;
+}
+.preciopr{
+    padding: 5px 0px 10px 0px;
+    text-align: right;
+}
+
+.catpr{
+    padding: 0px 0px 5px 0px;
+    text-align: right;
+    font-weight: bold;
+}

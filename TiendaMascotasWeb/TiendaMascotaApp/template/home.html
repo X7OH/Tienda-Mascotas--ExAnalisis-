@@ -1,0 +1,27 @@
+{%extends "HeadFoot.html"%}
+
+{%load static%}
+
+{%block content%}
+<section>
+    <div class="conthome">
+        <div class="intro">
+            <div class="imagPres">
+            <img  src=" {% static 'img/1.jpg' %} " alt=""></div>
+            <div class="intro-text left-0-text-center bg-faded p-5 rounded">
+                <h2 class="section-heading mb-4">
+                    <span class="section-heading-upper">Texto Prueba</span>
+                    <span class="section-heading-lower">Texto Prueba 2</span>
+                </h2>
+                <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Ad aperiam ex repellat perferendis accusamus assumenda esse porro asperiores
+                </p>
+                <p>En [Nombre de la Empresa], nos dedicamos a ofrecer los mejores alimentos y accesorios para tus mascotas. 
+                    Con una amplia gama de productos de alta calidad, garantizamos que tus amigos peludos reciban 
+                    solo lo mejor.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+{%endblock%}

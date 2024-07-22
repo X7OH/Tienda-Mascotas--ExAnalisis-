@@ -1,0 +1,72 @@
+{% extends "HeadFoot.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-bottom: 50px; padding-top: 50px;">
+    <h2>Lista de Productos</h2>
+
+    <div class="table-responsive">
+            {% csrf_token %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Categoria</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Foto</th>
+                        <th>Acciones</th>
+                        <th>
+                            <button type="button" class="btn btn-primary btn-sm" onclick="showAddForm()">+</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <form method="post" action="{% url 'ModProd' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <td><input type="text" name="nombreProd" value="{{ producto.nombreProd }}" class="form-control"></td>
+                            <td><input type="text" name="marca" value="{{ producto.marca }}" class="form-control"></td>
+                            <td>
+                                <div class="cat">
+                                    <select name="categoria" required="" id="categoria" class="form-select">
+                                        <option value="{{ producto.categoria }}" selected="selected">{{ producto.categoria }}</option>
+                                        {% for categoria in categorias %}
+                                            {% if categoria != producto.categoria %}
+                                                <option value="{{ categoria }}">{{ categoria }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    
+                                </div>
+                                {{ form.categoria }}
+                                {% if form.categoria.errors %}
+                                    {% for error in form.categoria.errors %}
+                                        <div class="invalid-feedback">{{ error }}</div>
+                                    {% endfor %}
+                                {% endif %} </td>
+                            <td><input type="text" name="descripcion" value="{{ producto.descripcion }}" class="form-control"></td>
+                            <td><input type="text" name="cantidad" value="{{ producto.cantidad }}" class="form-control"></td>
+                            <td><input type="text" name="precio" value="{{ producto.precio }}" class="form-control"></td>
+                            <td> <div class="fotocont"> <input type="file" name="foto"  id="foto" accept="image/*" >{{ producto.foto }} </div> </td>
+                            <td>
+                                <button type="button" class="btn btn-sm btnEditar" data-id="{{ producto.id }}">Editar</button>
+                                <button type="submit" class="btn btn-sm btn-success btnGuardar" data-id="{{ producto.id }}" style="display: none;">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-secondary btnCancelar" data-id="{{ producto.id }}" style="display: none;">Cancelar</button>
+                                <a href="#" class="btn btn-sm btn-danger">Eliminar</a></td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    
+                </tbody>
+            </table>
+    </div>
+</div>
+
+
+
+{% endblock %}

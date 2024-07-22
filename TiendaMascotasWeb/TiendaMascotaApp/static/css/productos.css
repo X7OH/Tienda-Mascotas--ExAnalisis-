@@ -1,0 +1,120 @@
+/* styles.css */
+.thumbnail {
+    display: grid;
+    background: grey;
+    padding: 15px;
+    border-radius: 5px;
+    transition: transform 0.2s;
+    justify-content: center;
+    box-sizing: border-box; /* Asegura que el padding y borde se incluyan en el tamaño del contenedor */
+    overflow: hidden;
+}
+
+.thumbnail:hover {
+    transform: scale(1.05);
+}
+
+.thumbnail img {
+    width: 100%;          
+    max-height: 400px;    
+    display: grid;
+    place-items: center; 
+}
+
+.btn {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background-color: white;
+    color: black;
+    border: 2px solid #4CAF50;
+}
+
+.marca{
+    font-size: 18;
+    font-weight: bold;
+    text-justify: distribute;
+}
+
+.imgpr {
+    width: 300px;         /* Ancho del contenedor */
+    height: 400px;        /* Alto del contenedor */
+    overflow: hidden;     /* Ocultar cualquier contenido que desborde el contenedor */
+    border: 1px solid #ccc; /* Opcional: añadir un borde para visualizar el contenedor */
+    display: flex;        /* Usar flexbox para centrar la imagen */
+    align-items: center;  /* Centrar verticalmente */
+    justify-content: center; /* Centrar horizontalmente */
+    box-sizing: border-box;
+}
+
+.imgpr img {
+    max-width: 100%;      /* Ajustar la imagen al ancho del contenedor */
+    max-height: 100%;     /* Ajustar la imagen al alto del contenedor */
+    width: auto;          /* Mantener la proporción de la imagen */
+    height: auto;         /* Mantener la proporción de la imagen */
+    box-sizing: border-box
+}
+
+.busquedad {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px; /* Espacio entre el input y el botón */
+    padding: 30px 0px 30px 0px;
+}
+.busquedad input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: 'none';
+    max-width: 300px;
+}
+.busquedad img {
+    width: 50px; /* Ajusta el tamaño del ícono según tus necesidades */
+    height: 50px; /* Ajusta el tamaño del ícono según tus necesidades */
+    margin-left: 10px;
+
+}
+
+
+.btnBuscar{
+    background-color: transparent;
+    margin:none;
+    border: none;
+    background: none;
+
+}
+
+.categoria{
+    display: flex;
+    text-align: right;
+
+}
+
+.categoria p{
+    width: 100%;
+
+}
+
+.estadod{
+    text-align: left;
+    color: #007600;
+    font-weight: bold;
+}
+
+.estadond{
+    text-align: left;
+    color: red;
+}

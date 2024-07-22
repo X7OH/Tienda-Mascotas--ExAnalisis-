@@ -1,0 +1,78 @@
+{% extends "HeadFoot.html" %}
+
+{% load static %}
+
+{% block content %}
+    <section>
+        <form method="post" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
+                {{ form.nombre }}
+                {% if form.nombre.errors %}
+                    {% for error in form.nombre.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.apellido.id_for_label }}" class="form-label">Apellido</label>
+                {{ form.apellido }}
+                {% if form.apellido.errors %}
+                    {% for error in form.apellido.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.correo.id_for_label }}" class="form-label">Correo</label>
+                {{ form.correo }}
+                {% if form.correo.errors %}
+                    {% for error in form.correo.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.contraseña.id_for_label }}" class="form-label">Contraseña</label>
+                {{ form.contraseña }}
+                {% if form.contraseña.errors %}
+                    {% for error in form.contraseña.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-12">
+                <label for="{{ form.Dir1.id_for_label }}" class="form-label">Calle Principal</label>
+                {{ form.Dir1 }}
+                {% if form.Dir1.errors %}
+                    {% for error in form.Dir1.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-12">
+                <label for="{{ form.Dir2.id_for_label }}" class="form-label">Calle Secundaria</label>
+                {{ form.Dir2 }}
+                {% if form.Dir2.errors %}
+                    {% for error in form.Dir2.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.Ciudad.id_for_label }}" class="form-label">Ciudad</label>
+                {{ form.Ciudad }}
+                {% if form.Ciudad.errors %}
+                    {% for error in form.Ciudad.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Registrarse</button>
+            </div>
+        </form>
+    </section>
+{% endblock %}

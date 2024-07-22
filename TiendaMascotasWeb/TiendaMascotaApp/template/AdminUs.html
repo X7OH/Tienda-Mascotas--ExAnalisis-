@@ -1,0 +1,101 @@
+{% extends "HeadFoot.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-bottom: 50px; padding-top: 50px;">
+    <h2>Lista de Usuarios</h2>
+
+    <div class="table-responsive">
+        <form method="post" action="{% url 'AdminUs' %}">
+            {% csrf_token %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Nombres</th>
+                        <th>Apellidos</th>
+                        <th>Correo</th>
+                        <th>Contraseña</th>
+                        <th>Calle Principal</th>
+                        <th>Calle Secundaria</th>
+                        <th>Ciudad</th>
+                        <th>Rol</th>
+                        <th>Acciones</th>
+                        <th>
+                            <!-- Botón para mostrar el formulario de nuevo usuario -->
+                            <button type="button" class="btn btn-primary btn-sm" onclick="showAddForm()">+</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <form method="post" action="{% url 'AdminUs' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="usuario_id" value="{{ usuario.id }}">
+                            <td><input type="text" name="nombre" value="{{ usuario.nombre }}" class="form-control"></td>
+                            <td><input type="text" name="apellido" value="{{ usuario.apellido }}" class="form-control"></td>
+                            <td><input type="email" name="correo" value="{{ usuario.correo }}" class="form-control"></td>
+                            <td><input type="password" name="contraseña" value="{{ usuario.contraseña }}" class="form-control"></td>
+                            <td><input type="text" name="Dir1" value="{{ usuario.Dir1 }}" class="form-control"></td>
+                            <td><input type="text" name="Dir2" value="{{ usuario.Dir2 }}" class="form-control"></td>
+                            <td><input type="text" name="Ciudad" value="{{ usuario.Ciudad }}" class="form-control"></td>
+                            <td>
+                                <div class="rol" style="width: 150px;">
+                                    <select name="rol" required="" id="rol" class="form-select">
+                                        <option value="{{ usuario.rol }}" selected="selected">{{ usuario.rol }}</option>
+                                        {% for rol in roles %}
+                                            {% if rol != usuario.rol %}
+                                                <option value="{{ rol }}">{{ rol }}</option>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </select>
+                                    
+                                </div>
+
+                            </td>
+                            <td>
+                                <button type="button" id="btnEditar" class="btn btn-sm" onclick="habilitarEdicion()">Editar</button>
+                                <button type="submit" id="btnGuardar" class="btn btn-sm btn-success" style="display: none;">Guardar</button>
+                                <button type="button" id="btnCancelar" class="btn btn-sm btn-danger" style="display: none;" onclick="cancelarEdicion()">Cancelar</button>
+                                <a href="{% url 'ElimUs' usuario.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    
+                    <!-- Formulario para agregar un nuevo usuario -->
+                    <tr id="add-form" style="display: none;">
+                        <form method="post" action="{% url 'AdminUs' %}">
+                            {% csrf_token %}
+                            <td><input type="text" name="nombre" placeholder="Nombre" class="form-control"></td>
+                            <td><input type="text" name="apellido" placeholder="Apellido" class="form-control"></td>
+                            <td><input type="email" name="correo" placeholder="Correo" class="form-control"></td>
+                            <td><input type="password" name="contraseña" placeholder="Contraseña" class="form-control"></td>
+                            <td><input type="text" name="Dir1" placeholder="Calle Principal" class="form-control"></td>
+                            <td><input type="text" name="Dir2" placeholder="Calle Secundaria" class="form-control"></td>
+                            <td><input type="text" name="Ciudad" placeholder="Ciudad" class="form-control"></td>
+                            <td><input type="text" name="rol" placeholder="Rol" class="form-control"></td>
+                            <td>
+                                <button type="submit" class="btn btn-sm btn-primary">Agregar</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="hideAddForm()">Cancelar</button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showAddForm() {
+        document.getElementById('add-form').style.display = 'table-row';
+    }
+
+    function hideAddForm() {
+        document.getElementById('add-form').style.display = 'none';
+    }
+</script>
+
+{% endblock %}

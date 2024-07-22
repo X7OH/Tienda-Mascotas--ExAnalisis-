@@ -1,0 +1,60 @@
+{% extends "HeadFoot.html" %}
+{% load static %}
+
+{% block content %}
+<section>
+    <!-- Container (TOUR Section) -->
+    <div id="tour" class="bg-1">
+        <div class="container">
+            <h3 class="text-center">Productos</h3>
+            <p class="text-center">Todos los Productos que tiene la empresa<br> Remember to book your tickets!</p>
+            <div class="row text-center">
+                
+                <form method="get" action="{% url 'Productos' %}">
+                    {% csrf_token %}
+                    <div class="busquedad">
+                        <input type="text" name="buscarProd" class="buscarProd" placeholder="Buscar por Nombre, Marca ...">
+                        <button type="submit" class="btnBuscar" role="button">
+                            <img src="https://img.icons8.com/?size=100&id=aBNtkpYvycsP&format=png&color=000000" alt="Buscar">
+                        </button>
+                    </div>
+                </form>
+                
+                
+                {%for producto in productos%}
+                <div class="col-sm-4" style="padding-bottom: 20px;">
+                    <div class="thumbnail">
+                        <div class="imgpr"><img  src="{{ producto.foto.url }}" >
+                        </div>
+                        <div class="categoria">
+                            {%if producto.cantidad > 0 %}
+                            <p class="estadod">Estado:  En Stock</p>
+                            {%else%}
+                            <p class="estadond">Estado: No Disponible</p>
+                            {%endif%}
+                            <p>Categoría {{ producto.categoria }} </p> 
+                        </div>
+                        <p><strong>Nombre {{ producto.nombreProd }}</strong></p>
+                        <p class="marca">Marca {{ producto.marca }} </p>
+                        <p class="cantidad">Cantidad {{ producto.cantidad }} </p>
+                        <div class="wrap-money">
+                            <p class="precio">
+                                <span>Precio</span>
+                            </p>
+                            <div class="texto-porKilo">{{ producto.precio }}</div>
+                        </div>
+                        <div class="btndes">
+                        <a href="{% url 'DescProd' producto.id %}" role="button" class="btn">Descripción</a>
+                        </div>
+                        <!-- <a href="{% url 'home' %}" role="button" class="btn" data-toggle="modal" >Descripción</a> -->
+                        <!-- <button class="btn" data-toggle="modal" data-target="#myModal"><a href="{% url 'home' %}" ></a> Descripción</button> -->
+
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
