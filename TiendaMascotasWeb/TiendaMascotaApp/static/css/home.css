@@ -1,10 +1,105 @@
-.conthome{
+
+/* Estilos para el contenedor del home */
+.conthome {
+    background: url("{% static 'img/1.jpg' %}") no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    position: relative;
     width: 100%;
+    height: 100vh; 
+    overflow: hidden;
+}
+
+.container h2{
+    font-style: italic;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.container p{
+    font-weight: lighter; 
+    font-size: 18px; 
+    font-style: italic; 
+    text-align: center; 
+    width: 80%;
+    margin: 0 auto;
+    padding-bottom: 15px;
 }
 
 
+.container2 h2{
+    font-style: italic;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
 
-.imagPres img{
-    display: block;
+.container2 p{
+    font-weight: lighter; 
+    font-size: 18px; 
+    font-style: italic; 
+    text-align: center; 
+    width: 60%;
     margin: 0 auto;
+    padding-bottom: 15px;
+}
+
+.intro {
+    background: rgba(255, 255, 255, 0.3); 
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 800px;
+    margin: 0 auto; 
+    position: relative;
+    z-index: 1; 
+}
+
+
+.imagPres img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.intro-text {
+    color: #333; 
+}
+
+.carousel-inner {
+    display: flex;
+    position: relative;
+    width: 100%;
+    height: 600px;
+    overflow: hidden;
+    align-items: center;
+}
+
+.carousel-inner .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+}
+
+.imgprox{
+    display: flex;    
+    justify-content: center;
+    overflow: hidden;
+}
+
+.imgprox img{
+    max-width: 100%; /* Ajusta el ancho máximo de la imagen */
+    max-height: 100%; /* Ajusta la altura máxima de la imagen */
+    object-fit: cover; /* Mantiene la proporción de la imagen */
+    padding-bottom: 30px;
+}
+
+/* BOTONES DE CARRUSEL */
+
+.carousel-control-prev, .carousel-control-next {
+    background-color: #e4e3e334; /* Color de fondo semi-transparente */
+    transition: background-color 0.3s ease; /* Transición suave para el cambio de color */
+}
+
+.carousel-control-prev:hover, .carousel-control-next:hover {
+    background-color: rgba(0, 0, 0, 0.6); /* Oscurecimiento al pasar el cursor */
 }

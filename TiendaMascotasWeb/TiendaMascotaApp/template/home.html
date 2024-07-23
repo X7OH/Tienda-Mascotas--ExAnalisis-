@@ -1,27 +1,88 @@
-{%extends "HeadFoot.html"%}
+{% extends "HeadFoot.html" %}
 
-{%load static%}
+{% load static %}
 
-{%block content%}
-<section>
-    <div class="conthome">
-        <div class="intro">
-            <div class="imagPres">
-            <img  src=" {% static 'img/1.jpg' %} " alt=""></div>
-            <div class="intro-text left-0-text-center bg-faded p-5 rounded">
-                <h2 class="section-heading mb-4">
-                    <span class="section-heading-upper">Texto Prueba</span>
-                    <span class="section-heading-lower">Texto Prueba 2</span>
-                </h2>
-                <p class="mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. 
-                    Ad aperiam ex repellat perferendis accusamus assumenda esse porro asperiores
-                </p>
-                <p>En [Nombre de la Empresa], nos dedicamos a ofrecer los mejores alimentos y accesorios para tus mascotas. 
-                    Con una amplia gama de productos de alta calidad, garantizamos que tus amigos peludos reciban 
-                    solo lo mejor.</p>
+{% block content %}
+
+<section class="section1">
+    <div class="intro">
+        <div id="myCarousel" class="carousel slide">
+            <!-- Indicators -->
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
             </div>
+
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="{% static 'img/1.jpg' %}" class="d-block w-100" alt="Los Angeles">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/corte2.jpg' %}" class="d-block w-100" alt="Chicago">
+                </div>
+                <div class="carousel-item">
+                    <img src="{% static 'img/golden.jpg' %}" class="d-block w-100" alt="New York">
+                </div>
+            </div>
+
+
+            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
     </div>
 </section>
 
-{%endblock%}
+
+<section class="section2 bg-light">
+    <div class="container">
+        <h2 class="section-heading mb-4 text-center">Ofrecemos...</h2>
+        <p>
+            Una amplia gama de productos y servicios de alta calidad para 
+            tus mascotas. Nuestra tienda cuenta con una extensa selección 
+            de alimentos premium para perros y gatos, incluyendo opciones 
+            para dietas específicas y necesidades especiales. Además, 
+            ofrecemos una variedad de accesorios, desde cómodas camas y 
+            elegantes collares hasta juguetes interactivos y productos de 
+            cuidado personal. No solo tenemos productos para perros y gatos, 
+            sino también para aves, peces y pequeños animales, asegurando 
+            que todas las necesidades de tus compañeros peludos y 
+            emplumados estén cubiertas. Estamos siempre felices de brindarte todo 
+            lo necesario para garantizar la salud, el bienestar
+            y la felicidad de tus mascotas, con la mejor atención y asesoramiento personalizado.
+        </p>
+        
+    </div>
+</section>
+
+<section class="section3">
+    <div class="container2">
+        <h2 class="section-heading mb-4 text-center">Nuestro Compromiso</h2>
+        <p>
+            Nuestra meta a alcanzar es ser la tienda líder en el sector en productos innovadores
+            y sostenibles para mascotas, mejorando la calidad de vida de los animales 
+            y satisfaciendo las necesidades de sus dueños.
+        </p>
+        
+    </div>
+</section>
+
+<section class="section4 bg-light">
+    <div class="container2">
+        <h2 class="section-heading mb-4 text-center">Próximamente</h2>
+        <div class="imgprox" >
+            <img src="{% static 'img/corte2.jpg' %}"  alt="Los Angeles">
+        </div>
+                
+    </div>
+</section>
+
+
+{% endblock %}
