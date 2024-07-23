@@ -4,75 +4,97 @@
 
 {% block content %}
     <section>
-        <form method="post" class="row g-3">
-            {% csrf_token %}
-            <div class="col-md-6">
-                <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre</label>
-                {{ form.nombre }}
-                {% if form.nombre.errors %}
-                    {% for error in form.nombre.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <label for="{{ form.apellido.id_for_label }}" class="form-label">Apellido</label>
-                {{ form.apellido }}
-                {% if form.apellido.errors %}
-                    {% for error in form.apellido.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <label for="{{ form.correo.id_for_label }}" class="form-label">Correo</label>
-                {{ form.correo }}
-                {% if form.correo.errors %}
-                    {% for error in form.correo.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <label for="{{ form.contraseña.id_for_label }}" class="form-label">Contraseña</label>
-                {{ form.contraseña }}
-                {% if form.contraseña.errors %}
-                    {% for error in form.contraseña.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-12">
-                <label for="{{ form.Dir1.id_for_label }}" class="form-label">Calle Principal</label>
-                {{ form.Dir1 }}
-                {% if form.Dir1.errors %}
-                    {% for error in form.Dir1.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-12">
-                <label for="{{ form.Dir2.id_for_label }}" class="form-label">Calle Secundaria</label>
-                {{ form.Dir2 }}
-                {% if form.Dir2.errors %}
-                    {% for error in form.Dir2.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            <div class="col-md-6">
-                <label for="{{ form.Ciudad.id_for_label }}" class="form-label">Ciudad</label>
-                {{ form.Ciudad }}
-                {% if form.Ciudad.errors %}
-                    {% for error in form.Ciudad.errors %}
-                        <div class="invalid-feedback">{{ error }}</div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-            
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary">Registrarse</button>
-            </div>
-        </form>
+        <div class="container" style="padding-top: 50px; padding-bottom: 50px;">
+            <form method="post" class="row g-3">
+                {% csrf_token %}
+                <div class="col-md-6">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control {% if form.nombre.errors %}is-invalid{% endif %}" value="{{ form.nombre.value|default_if_none:'' }}" required>
+                    {% if form.nombre.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.nombre.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control {% if form.apellido.errors %}is-invalid{% endif %}" value="{{ form.apellido.value|default_if_none:'' }}" required>
+                    {% if form.apellido.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.apellido.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input type="email" name="correo" id="correo" class="form-control {% if form.correo.errors %}is-invalid{% endif %}" value="{{ form.correo.value|default_if_none:'' }}" required>
+                    {% if form.correo.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.correo.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="contraseña" class="form-label">Contraseña</label>
+                    <input type="password" name="contraseña" id="contraseña" class="form-control {% if form.contraseña.errors %}is-invalid{% endif %}" value="{{ form.contraseña.value|default_if_none:'' }}" required>
+                    {% if form.contraseña.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.contraseña.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-12">
+                    <label for="Dir1" class="form-label">Calle Principal</label>
+                    <input type="text" name="Dir1" id="Dir1" class="form-control {% if form.Dir1.errors %}is-invalid{% endif %}" value="{{ form.Dir1.value|default_if_none:'' }}" required>
+                    {% if form.Dir1.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.Dir1.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-12">
+                    <label for="Dir2" class="form-label">Calle Secundaria</label>
+                    <input type="text" name="Dir2" id="Dir2" class="form-control {% if form.Dir2.errors %}is-invalid{% endif %}" value="{{ form.Dir2.value|default_if_none:'' }}" required>
+                    {% if form.Dir2.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.Dir2.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-md-6">
+                    <label for="Ciudad" class="form-label">Ciudad</label>
+                    <input type="text" name="Ciudad" id="Ciudad" class="form-control {% if form.Ciudad.errors %}is-invalid{% endif %}" value="{{ form.Ciudad.value|default_if_none:'' }}" required>
+                    {% if form.Ciudad.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.Ciudad.errors %}
+                                {{ error }}
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary">Registrarse</button>
+                </div>
+            </form>
+        </div>
     </section>
 {% endblock %}

@@ -64,11 +64,17 @@ def Registro(request):
         form = RegUs(request.POST)
         if form.is_valid():
             usuario = form.save(commit=False)
+            usuario.rol = "Cliente"  # Establece el rol predeterminado si lo necesitas
             usuario.save()
             return redirect('Login')
+        else:
+            # Imprime errores de formulario para depuración
+            print("Formulario no válido:", form.errors)
     else:
         form = RegUs()
+    
     return render(request, "Registro.html", {'form': form, 'user_role': rol, 'user_correo': correo})
+
 
 def RegProd(request):
     rol, correo = var(request)

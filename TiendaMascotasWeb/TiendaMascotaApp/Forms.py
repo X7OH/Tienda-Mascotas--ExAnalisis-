@@ -5,7 +5,7 @@ import re
 class RegUs(forms.ModelForm):
     class Meta:
         model = Usuario
-        fields = ['nombre', 'apellido','correo', 'contraseña', 'Dir1', 'Dir2','Ciudad','rol']
+        fields = ['nombre', 'apellido','correo', 'contraseña', 'Dir1', 'Dir2','Ciudad']
         widgets = {
             'contraseña': forms.PasswordInput(),
         }
