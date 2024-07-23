@@ -1,21 +1,27 @@
 {% extends "HeadFoot.html" %}
 
 {% block content %}
-    <section>
-        <form method="post" class="row g-3">
+    <section class="d-flex justify-content-center align-items-center min-vh-100">
+        <form method="post" class="row g-3 bg-light p-4 rounded shadow-sm" style="max-width: 400px; width: 100%;">
             {% csrf_token %}
             
-            <div class="container">
-                <div class="form-group">
-                    <label for="correo">Correo</label>
-                    <input type="text" class="form-control" id="correo" name="correo">
-                </div> 
-                <div class="form-group">
-                    <label for="contraseña">Contraseña</label>
-                    <input type="password" class="form-control" id="contraseña" name="contraseña">
-                </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+            <!-- <h2 class="text-center mb-4">Login</h2> -->
+            <div class="iconlog" style="display: flex; justify-content: center;">
+                <img src="https://img.icons8.com/?size=100&id=26218&format=png&color=000000" alt="login" style="justify-content: center; align-items: center;">
+
             </div>
+            
+            <div class="form-group">
+                <label for="correo">Correo</label>
+                <input type="email" class="form-control" id="correo" name="correo" required>
+            </div> 
+            
+            <div class="form-group">
+                <label for="contraseña">Contraseña</label>
+                <input type="password" class="form-control" id="contraseña" name="contraseña" required>
+            </div>
+            
+            <button type="submit" class="btn btn-primary w-100">Login</button>
         </form>
     </section>
 {% endblock %}

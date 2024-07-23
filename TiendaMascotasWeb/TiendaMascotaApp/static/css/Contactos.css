@@ -1,0 +1,17 @@
+.about{
+    padding-top: 20px;
+    padding-bottom: 20px;
+    text-align: center;
+    justify-content: center;
+}
+.about h2{
+    text-align: center;
+    justify-content: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.imgCont img{
+    width: 100%;
+    height: 60%;
+}
