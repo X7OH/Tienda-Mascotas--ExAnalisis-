@@ -5,3 +5,16 @@
 .cat{
     width: 200px;
 }
+
+td{
+    width: 100%;
+}
+
+.preciotabla{
+    width: 100%;
+}
+
+.table th {
+    padding-left: 15px; /* Ajusta el valor según tus necesidades */
+    padding-right: 15px;
+}

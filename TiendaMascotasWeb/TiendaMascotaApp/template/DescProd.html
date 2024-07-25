@@ -5,20 +5,20 @@
 <section>
     <!-- Container (TOUR Section) -->
     <div id="tour" class="bg-1">
-        <p>Descripción de Productos</p>
+        <div class="titulo"> <h2>Descripción de Productos</h2> </div>
 
             <div class="contDesc">
                 <div class="imgProd"><img  src=" {{ producto.foto.url }} " alt="Producto" >
                 </div>
 
                 <div class="contProd">
-                    <div class="catpr"><p>Categoria {{ producto.categoria }}</p></div>
-                    <div class="titProd"><h3>Titulo {{ producto.nombreProd }}</h3></div>
+                    <div class="catpr"><p>{{ producto.categoria }}</p></div>
+                    <div class="titProd"><h3>{{ producto.nombreProd }}</h3></div>
                     <div class="marcapr">
-                        <p>marca {{ producto.marca }} </p>
+                        <p>{{ producto.marca }} </p>
                     </div>
                     <div class="cantProd">
-                        <p>Cantidad: <span>Numero {{ producto.cantidad }} </span></p>
+                        <p>Cantidad: <span>{{ producto.cantidad }} </span></p>
                     </div>
                     <div class="Descrip">
                         <strong><p>Descripción </p></strong>

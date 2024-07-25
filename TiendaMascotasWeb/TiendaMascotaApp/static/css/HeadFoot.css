@@ -11,8 +11,12 @@
 }
 
 .footer{
-    background-color: grey;
-    text-align: right;
+  background-color: grey;
+    /* text-align: right; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Dropdown button */
@@ -61,3 +65,16 @@
   .dropdown:hover .dropdown-content {
     display: block;
   }
+
+.textfinal{
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.textfinal a{
+  font-weight: bold;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}

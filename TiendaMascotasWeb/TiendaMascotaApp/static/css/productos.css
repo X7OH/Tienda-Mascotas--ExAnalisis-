@@ -51,7 +51,7 @@
     width: 300px;         /* Ancho del contenedor */
     height: 400px;        /* Alto del contenedor */
     overflow: hidden;     /* Ocultar cualquier contenido que desborde el contenedor */
-    border: 1px solid #ccc; /* Opcional: añadir un borde para visualizar el contenedor */
+    /* border: 1px solid #ccc;  */
     display: flex;        /* Usar flexbox para centrar la imagen */
     align-items: center;  /* Centrar verticalmente */
     justify-content: center; /* Centrar horizontalmente */

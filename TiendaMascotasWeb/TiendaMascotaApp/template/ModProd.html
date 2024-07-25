@@ -44,16 +44,11 @@
                                     </select>
                                     
                                 </div>
-                                <!-- {{ form.categoria }}
-                                {% if form.categoria.errors %}
-                                    {% for error in form.categoria.errors %}
-                                        <div class="invalid-feedback">{{ error }}</div>
-                                    {% endfor %}
-                                {% endif %} -->
+                                
                              </td>
                             <td><input type="text" name="descripcion" value="{{ producto.descripcion }}" class="form-control" id="descripcion"></td>
                             <td><input type="text" name="cantidad" value="{{ producto.cantidad }}" class="form-control" id="cantidad"></td>
-                            <td><input type="number" name="precio" value="{{ producto.precio }}" class="form-control" id="precio" min="0" max="999.99" step="0.01"></td>
+                            <td> <input type="number" name="precio" value="{{ producto.precio }}" class="form-control" id="precio" min="0" max="999.99" step="0.01" placeholder="{{producto.precio}}"> </td>
                             <td> <div class="fotocont"> <input type="file" name="foto"  accept="image/*" id="foto">{{ producto.foto }} </div> </td>
                             <td>
                                 <button type="button" data-id="{{ producto.id }}" class="btn btn-sm btnEditar" >Editar</button>
@@ -87,7 +82,7 @@
                              </td>
                             <td><input type="text" name="descripcion" class="form-control"></td>
                             <td><input type="text" name="cantidad" class="form-control"></td>
-                            <td><input type="number" name="precio" class="form-control" min="0" max="999.99" step="0.01"></td>
+                            <td style="padding-left: 15px; padding-right: 15px;"><div class="preciotabla">  <input type="number" name="precio" class="form-control" min="0" max="999.99" step="0.01"> </div> </td>
                             <td> <div class="fotocont"> <input type="file" name="foto"  id="foto" accept="image/*" >{{ producto.foto }} </div> </td>
                             <td>
                                 <button type="submit" class="btn btn-sm btn-primary">Agregar</button>

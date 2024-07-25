@@ -1,0 +1,131 @@
+{% extends "HeadFoot.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container" style="padding-bottom: 50px; padding-top: 50px;">
+    <h2>Modificar Productos</h2>
+
+    <div class="table-responsive">
+        <!-- Formulario de Producto -->
+        <form method="post" enctype="multipart/form-data" action="{% url 'ModProd' %}">
+            {% csrf_token %}
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Marca</th>
+                        <th>Categoría</th>
+                        <th>Descripción</th>
+                        <th>Cantidad</th>
+                        <th>Precio</th>
+                        <th>Foto</th>
+                        <th>Acciones</th>
+                        <th>
+                            <!-- Botón para mostrar el formulario de nuevo producto -->
+                            <button type="button" class="btn btn-primary btn-sm" onclick="showAddForm()">+</button>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for producto in productos %}
+                    <tr>
+                        <form method="post" action="{% url 'ModProd' %}" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <input type="hidden" name="producto_id" value="{{ producto.id }}">
+                            <td>{{ producto.id }}</td>
+                            <td><input type="text" name="nombreProd" value="{{ producto.nombreProd }}" class="form-control"></td>
+                            <td><input type="text" name="marca" value="{{ producto.marca }}" class="form-control"></td>
+                            <td>
+                                <select name="categoria" class="form-select">
+                                    <option value="{{ producto.categoria }}" selected>{{ producto.categoria }}</option>
+                                    {% for categoria in categorias %}
+                                        {% if categoria != producto.categoria %}
+                                            <option value="{{ categoria }}">{{ categoria }}</option>
+                                        {% endif %}
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td><input type="text" name="descripcion" value="{{ producto.descripcion }}" class="form-control"></td>
+                            <td><input type="number" name="cantidad" value="{{ producto.cantidad }}" class="form-control"></td>
+                            <td><input type="number" name="precio" value="{{ producto.precio }}" class="form-control"></td>
+                            <td><input type="file" name="foto" class="form-control"></td>
+                            <td>
+                                <button type="button" data-id="{{ producto.id }}" class="btn btn-sm btnEditar">Editar</button>
+                                <button type="submit" class="btn btn-sm btn-success btnGuardar" style="display: none;">Guardar</button>
+                                <button type="button" class="btn btn-sm btn-danger btnCancelar" style="display: none;">Cancelar</button>
+                                <a href="{% url 'ElimProd' producto.id %}" class="btn btn-sm btn-danger">Eliminar</a>
+                            </td>
+                        </form>
+                    </tr>
+                    {% endfor %}
+                    
+                    <!-- Formulario para agregar un nuevo producto -->
+                    <tr id="add-form" style="display: none;">
+                        <form method="post" enctype="multipart/form-data" action="{% url 'ModProd' %}">
+                            {% csrf_token %}
+                            <td>Nueva</td>
+                            <td><input type="text" name="nombreProd" placeholder="Nombre" class="form-control"></td>
+                            <td><input type="text" name="marca" placeholder="Marca" class="form-control"></td>
+                            <td>
+                                <select name="categoria" class="form-select">
+                                    {% for categoria in categorias %}
+                                        <option value="{{ categoria }}">{{ categoria }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td><input type="text" name="descripcion" placeholder="Descripción" class="form-control"></td>
+                            <td><input type="number" name="cantidad" placeholder="Cantidad" class="form-control"></td>
+                            <td><input type="number" name="precio" placeholder="Precio" class="form-control"></td>
+                            <td><input type="file" name="foto" class="form-control"></td>
+                            <td>
+                                <button type="submit" class="btn btn-sm btn-primary">Agregar</button>
+                                <button type="button" class="btn btn-sm btn-secondary" onclick="hideAddForm()">Cancelar</button>
+                            </td>
+                        </form>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showAddForm() {
+        document.getElementById('add-form').style.display = 'table-row';
+    }
+
+    function hideAddForm() {
+        document.getElementById('add-form').style.display = 'none';
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.btnEditar').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                mostrarBtn(id);
+            });
+        });
+
+        document.querySelectorAll('.btnCancelar').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                cancelEdicion(id);
+            });
+        });
+    });
+
+    function mostrarBtn(id) {
+        document.querySelector('.btnEditar[data-id="' + id + '"]').style.display = 'none';
+        document.querySelector('.btnGuardar[data-id="' + id + '"]').style.display = 'inline';
+        document.querySelector('.btnCancelar[data-id="' + id + '"]').style.display = 'inline';
+    }
+
+    function cancelEdicion(id) {
+        document.querySelector('.btnEditar[data-id="' + id + '"]').style.display = 'inline';
+        document.querySelector('.btnGuardar[data-id="' + id + '"]').style.display = 'none';
+        document.querySelector('.btnCancelar[data-id="' + id + '"]').style.display = 'none';
+    }
+</script>
+
+{% endblock %}

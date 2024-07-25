@@ -6,6 +6,8 @@ from django.contrib import messages  # Para mensajes de error
 from django.http import JsonResponse
 from django.db.models import Q
 import os
+from django.contrib.auth.hashers import make_password
+import bcrypt
 
 def var(request):
     rol = request.session.get('usuario_rol', None)
@@ -65,6 +67,8 @@ def Registro(request):
         if form.is_valid():
             usuario = form.save(commit=False)
             usuario.rol = "Cliente"  # Establece el rol predeterminado si lo necesitas
+            
+
             usuario.save()
             return redirect('Login')
         else:
@@ -153,23 +157,29 @@ def ElimProd(request, producto_id):
     producto.delete()
     return redirect('ModProd')
 
+
 def ModProd(request):
     rol, correo = var(request)
     categorias = ['Alimentos', 'Aseo', 'Ropa']
+
     if request.method == "POST":
         producto_id = request.POST.get("producto_id")
         
         if producto_id:  # Actualizar producto existente
             producto = get_object_or_404(Producto, id=producto_id)
             form = RegiProd(request.POST, request.FILES, instance=producto)
-        else:  
+        else:  # Crear nuevo producto
             form = RegiProd(request.POST, request.FILES)
         
         if form.is_valid():
             form.save()
-            return redirect('ModProd')
+            return redirect('ModProd')  
         else:
-            print(form.errors)
+            print(form.errors)  
             
+    else:
+        form = RegiProd()  
+
     productos = Producto.objects.all()  # Obtiene todos los productos
-    return render(request, 'ModProd.html', {'productos': productos, 'categorias': categorias, 'user_role': rol, 'user_correo': correo})
+    return render(request, 'ModProd.html', {'productos': productos,'categorias': categorias,'user_role': rol, 'user_correo': correo, 'form': form,  # Incluye el formulario en el contexto para la vista
+    })
