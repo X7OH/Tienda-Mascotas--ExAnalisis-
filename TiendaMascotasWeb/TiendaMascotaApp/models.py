@@ -7,7 +7,7 @@ class Usuario(models.Model):
     nombre = models.CharField(max_length=15,null=False)
     apellido = models.CharField(max_length=15,null=False)
     correo = models.EmailField(max_length=50,null= False)
-    contraseña = models.CharField(max_length=128,null=False)
+    contraseña = models.CharField(max_length=80,null=False)
     Dir1= models.CharField(max_length=30,default="N/A")
     Dir2= models.CharField(max_length=30,default="N/A")
     Ciudad= models.CharField(max_length=15,default="Quito")

@@ -59,6 +59,8 @@ def Contactos(request):
     print(correo)
     return render(request, "Contactos.html", {'user_role': rol, 'user_correo': correo} )
 
+
+
 def Registro(request):
     rol, correo = var(request)
     
@@ -68,6 +70,10 @@ def Registro(request):
             usuario = form.save(commit=False)
             usuario.rol = "Cliente"  # Establece el rol predeterminado si lo necesitas
             
+            # Encripta la contraseña
+            contraseña_plana = usuario.contraseña.encode('utf-8')
+            hashed_contraseña = bcrypt.hashpw(contraseña_plana, bcrypt.gensalt())
+            usuario.contraseña = hashed_contraseña.decode('utf-8')
 
             usuario.save()
             return redirect('Login')
@@ -101,10 +107,21 @@ def Login(request):
         correo = request.POST.get('correo')
         contraseña = request.POST.get('contraseña')
         
+        # try:
+        #     usuario = Usuario.objects.get(correo=correo)
+            
+        #     if usuario.contraseña == contraseña:
+        #         rol = usuario.rol
+        #         print(rol)
+        #         request.session['usuario_id'] = usuario.id
+        #         request.session['usuario_rol'] = rol
+        #         request.session['usuario_correo'] = usuario.correo
+        #         return redirect('home')
+        #     else:
         try:
             usuario = Usuario.objects.get(correo=correo)
-            
-            if usuario.contraseña == contraseña:
+            contformateada= bytes(contraseña, 'utf-8')
+            if bcrypt.checkpw(contformateada, bytes(usuario.contraseña,'utf-8') ):
                 rol = usuario.rol
                 print(rol)
                 request.session['usuario_id'] = usuario.id
@@ -115,6 +132,7 @@ def Login(request):
                 messages.error(request, 'Error: Contraseña incorrecta.')
         except Usuario.DoesNotExist:
             messages.error(request, 'Error: Usuario no existe.')
+        
     
     return render(request, 'Login.html')
 
@@ -141,8 +159,19 @@ def AdminUs(request):
             form = RegUs(request.POST)
         
         if form.is_valid():
+            usuario=form.save(commit=False)
+            
+            # Encripta la contraseña solo si se ha proporcionado una nueva contraseña
+            if 'contraseña' in form.cleaned_data and form.cleaned_data['contraseña']:
+                contraseña_plana = form.cleaned_data['contraseña'].encode('utf-8')
+                hashed_contraseña = bcrypt.hashpw(contraseña_plana, bcrypt.gensalt())
+                usuario.contraseña = hashed_contraseña.decode('utf-8')
+            
             form.save()
             return redirect('AdminUs')
+        else:
+                # Imprime errores de formulario para depuración
+                print("Formulario no válido:", form.errors)
     
     usuarios = Usuario.objects.all()  # Obtiene todos los usuarios
     return render(request, "AdminUs.html", {'usuarios': usuarios,'roles': roles, 'user_role': rol, 'user_correo': correo})

@@ -58,7 +58,7 @@
                 <div class="col-12">
                     <label for="Dir1" class="form-label">Calle Principal</label>
                     <input type="text" name="Dir1" id="Dir1" class="form-control {% if form.Dir1.errors %}is-invalid{% endif %}" 
-                    value="{{ form.Dir1.value|default_if_none:'' }}" >
+                    placeholder="{{ form.Dir1.value|default_if_none:'' }}" >
                     {% if form.Dir1.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.Dir1.errors %}
@@ -70,7 +70,7 @@
                 
                 <div class="col-12">
                     <label for="Dir2" class="form-label">Calle Secundaria</label>
-                    <input type="text" name="Dir2" id="Dir2" class="form-control {% if form.Dir2.errors %}is-invalid{% endif %}" value="{{ form.Dir2.value|default_if_none:'' }}" required >
+                    <input type="text" name="Dir2" id="Dir2" class="form-control {% if form.Dir2.errors %}is-invalid{% endif %}" placeholder="{{ form.Dir2.value|default_if_none:'' }}" required >
                     {% if form.Dir2.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.Dir2.errors %}
