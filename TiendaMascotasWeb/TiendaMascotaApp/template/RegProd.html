@@ -10,7 +10,7 @@
             
             <div class="col-md-6">
                 <label for="nombreProd" class="form-label">Nombre del Producto</label>
-                <input type="text" name="nombreProd" maxlength="15" class="form-control {% if form.nombreProd.errors %}is-invalid{% endif %}" id="nombreProd" required>
+                <input type="text" name="nombreProd" maxlength="100" class="form-control {% if form.nombreProd.errors %}is-invalid{% endif %}" id="nombreProd" value="{{ form.nombreProd.value|default_if_none:'' }}" required>
                 {% if form.nombreProd.errors %}
                     <div class="invalid-feedback">
                         {% for error in form.nombreProd.errors %}
@@ -22,7 +22,7 @@
 
             <div class="col-md-6">
                 <label for="marca" class="form-label">Marca</label>
-                <input type="text" name="marca" maxlength="15" class="form-control {% if form.marca.errors %}is-invalid{% endif %}" id="marca" required>
+                <input type="text" name="marca" maxlength="50" class="form-control {% if form.marca.errors %}is-invalid{% endif %}" id="marca" placeholder="{{ form.marca.value|default_if_none:'' }}" required>
                 {% if form.marca.errors %}
                     <div class="invalid-feedback">
                         {% for error in form.marca.errors %}
@@ -51,7 +51,7 @@
             
             <div class="col-md-6">
                 <label for="cantidad" class="form-label">Cantidad del Producto</label>
-                <input type="number" name="cantidad" class="form-control {% if form.cantidad.errors %}is-invalid{% endif %}" id="cantidad" min="0" max="9999" step="1" required>
+                <input type="number" name="cantidad" class="form-control {% if form.cantidad.errors %}is-invalid{% endif %}" id="cantidad" min="0" max="9999" step="1" placeholder="{{ form.cantidad.value|default_if_none:'' }}" required>
                 {% if form.cantidad.errors %}
                     <div class="invalid-feedback">
                         {% for error in form.cantidad.errors %}
@@ -63,7 +63,7 @@
 
             <div class="col-md-6">
                 <label for="precio" class="form-label">Precio</label>
-                <input type="number" name="precio" class="form-control {% if form.precio.errors %}is-invalid{% endif %}" id="precio" min="0" max="999.99" step="0.01" required>
+                <input type="number" name="precio" class="form-control {% if form.precio.errors %}is-invalid{% endif %}" id="precio" min="0" max="999.99" step="0.01"  required>
                 {% if form.precio.errors %}
                     <div class="invalid-feedback">
                         {% for error in form.precio.errors %}
@@ -75,7 +75,7 @@
 
             <div class="col-md-6">
                 <label for="foto" class="form-label">Subir Foto</label>
-                <input type="file" name="foto" class="form-control {% if form.foto.errors %}is-invalid{% endif %}" id="foto" accept="image/*" required>
+                <input type="file" name="foto" class="form-control {% if form.foto.errors %}is-invalid{% endif %}" id="foto" accept="image/*">
                 {% if form.foto.errors %}
                     <div class="invalid-feedback">
                         {% for error in form.foto.errors %}

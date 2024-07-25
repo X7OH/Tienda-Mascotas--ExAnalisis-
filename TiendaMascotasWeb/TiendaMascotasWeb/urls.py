@@ -20,6 +20,7 @@ urlpatterns = [
     path('AdminUs/eliminar/<int:usuario_id>', views.ElimUs, name="ElimUs"),
     path('buscar/', views.buscProd, name='buscProd'),
     path('ModProd', views.ModProd, name='ModProd'),
+    path('ModProd/eliminar/<int:producto_id>', views.ElimProd, name="ElimProd"),
 ]
 
 urlpatterns +=[

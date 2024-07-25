@@ -87,7 +87,7 @@ def RegProd(request):
     else:
         form=RegiProd()
     
-    return render(request, "RegProd.html", {'user_role': rol, 'user_correo': correo} )
+    return render(request, "RegProd.html", {'form':form, 'user_role': rol, 'user_correo': correo} )
 
 
 
@@ -148,21 +148,28 @@ def ElimUs(request, usuario_id):
     usuario.delete()
     return redirect('AdminUs')
 
+def ElimProd(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    producto.delete()
+    return redirect('ModProd')
+
 def ModProd(request):
     rol, correo = var(request)
     categorias = ['Alimentos', 'Aseo', 'Ropa']
     if request.method == "POST":
         producto_id = request.POST.get("producto_id")
         
-        if producto_id:  # Actualizar usuario existente
+        if producto_id:  # Actualizar producto existente
             producto = get_object_or_404(Producto, id=producto_id)
-            form = RegiProd(request.POST,request.FILES, instance=producto)
+            form = RegiProd(request.POST, request.FILES, instance=producto)
         else:  
-            form=RegiProd()
+            form = RegiProd(request.POST, request.FILES)
         
         if form.is_valid():
             form.save()
             return redirect('ModProd')
-    
+        else:
+            print(form.errors)
+            
     productos = Producto.objects.all()  # Obtiene todos los productos
     return render(request, 'ModProd.html', {'productos': productos, 'categorias': categorias, 'user_role': rol, 'user_correo': correo})

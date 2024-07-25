@@ -54,9 +54,9 @@
 
                             </td>
                             <td>
-                                <button type="button" id="btnEditar" class="btn btn-sm" onclick="habilitarEdicion()">Editar</button>
-                                <button type="submit" id="btnGuardar" class="btn btn-sm btn-success" style="display: none;">Guardar</button>
-                                <button type="button" id="btnCancelar" class="btn btn-sm btn-danger" style="display: none;" onclick="cancelarEdicion()">Cancelar</button>
+                                <button type="button" data-id="{{usuario.id}}" class="btn btn-sm btnEditar" >Editar</button>
+                                <button type="submit" data-id="{{usuario.id}}" class="btn btn-sm btn-success btnGuardar" style="display: none;">Guardar</button>
+                                <button type="button" data-id="{{usuario.id}}" class="btn btn-sm btn-danger btnCancelar" style="display: none;" >Cancelar</button>
                                 <a href="{% url 'ElimUs' usuario.id %}" class="btn btn-sm btn-danger">Eliminar</a>
 
                             </td>
@@ -95,6 +95,49 @@
 
     function hideAddForm() {
         document.getElementById('add-form').style.display = 'none';
+    }
+
+        
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.btnEditar').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                mostrarBtn(id);
+            });
+        });
+
+        document.querySelectorAll('.btnCancelar').forEach(function(button) {
+            button.addEventListener('click', function() {
+                var id = this.getAttribute('data-id');
+                cancelEdicion(id);
+            });
+        });
+    });
+
+    function mostrarBtn(id) {
+        document.querySelector('.btnEditar[data-id="' + id + '"]').style.display = 'none';
+        document.querySelector('.btnGuardar[data-id="' + id + '"]').style.display = 'inline';
+        document.querySelector('.btnCancelar[data-id="' + id + '"]').style.display = 'inline';
+    }
+
+    function cancelEdicion(id) {
+        document.querySelector('.btnEditar[data-id="' + id + '"]').style.display = 'inline';
+        document.querySelector('.btnGuardar[data-id="' + id + '"]').style.display = 'none';
+        document.querySelector('.btnCancelar[data-id="' + id + '"]').style.display = 'none';
+    }
+
+    function habilitarEdicion() {
+        document.getElementById('btnEditar').style.display = 'none';
+        document.getElementById('btnGuardar').style.display = 'inline-block';
+        document.getElementById('btnCancelar').style.display = 'inline-block';
+        // Habilitar los campos de formulario aquí si es necesario
+    }
+    
+    function cancelarEdicion() {
+        document.getElementById('btnEditar').style.display = 'inline-block';
+        document.getElementById('btnGuardar').style.display = 'none';
+        document.getElementById('btnCancelar').style.display = 'none';
+        // Deshabilitar los campos de formulario aquí si es necesario
     }
 </script>
 

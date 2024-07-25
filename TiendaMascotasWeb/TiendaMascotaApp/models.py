@@ -7,7 +7,7 @@ class Usuario(models.Model):
     contraseña = models.CharField(max_length=12,null=False)
     Dir1= models.CharField(max_length=30,default="N/A")
     Dir2= models.CharField(max_length=30,default="N/A")
-    Ciudad= models.CharField(max_length=15,default="N/A")
+    Ciudad= models.CharField(max_length=15,default="Quito")
     rol = models.CharField(max_length=20, default="Cliente")
     
 class Producto(models.Model):
